@@ -72,7 +72,7 @@ export default function CardOption({
     >
       {/* Icon Container */}
       <div className={cn(
-        "w-14 h-14 rounded-2xl bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm flex items-center justify-center shrink-0 shadow-sm border border-slate-200/50 dark:border-white/10 transition-transform duration-300 group-hover:scale-110",
+        "w-14 h-14 rounded-2xl bg-white/90 dark:bg-slate-800/90 flex items-center justify-center shrink-0 shadow-sm border border-slate-200/50 dark:border-white/10 transition-transform duration-300 group-hover:scale-110",
         isSelected ? getIconColor() : "text-slate-400 dark:text-slate-400"
       )}>
         {icon}
