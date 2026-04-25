@@ -1,26 +1,447 @@
 @import "tailwindcss";
 
+/* ============================================================
+   Variabel Tema Global — RuangIde Playful UI
+   ============================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --warna-latar: #F8FAFC;
+  --warna-teks: #0F172A;
+  --warna-teks-sekunder: #475569;
+  --warna-card: #FFFFFF;
+  --warna-card-hover: #F8FAFC;
+  --warna-card-active: #F1F5F9;
+  --warna-card-elevated: #FFFFFF;
+  --warna-card-elevated-hover: #F8FAFC;
+  
+  --border-default: rgba(15, 23, 42, 0.06);
+  --border-hover: rgba(15, 23, 42, 0.12);
+  
+  --warna-item: #FFFFFF;
+  --warna-item-hover: #F8FAFC;
+  
+  /* Primary & Secondary Vibrant (Editorial) */
+  --aksen-biru: #2563EB;
+  --aksen-sian: #06B6D4;
+  --aksen-ungu: #8B5CF6;
+  
+  /* Accent Fun */
+  --aksen-kuning: #FACC15;
+  --aksen-orange: #FB923C;
+  --aksen-pink: #F472B6;
+  
+  --border-color: rgba(15, 23, 42, 0.05);
+}
+
+.dark {
+  --warna-latar: #0D0F1A;
+  --warna-teks: #FFFFFF;
+  --warna-teks-sekunder: #A0A3BD;
+  --warna-card: #15182B;
+  --warna-card-hover: #1A1F3A;
+  --warna-card-active: #20265A;
+  --warna-card-elevated: #1B2040;
+  --warna-card-elevated-hover: #22285A;
+  
+  --border-default: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
+
+  --warna-item: #111427;
+  --warna-item-hover: #1A1F3A;
+  
+  --aksen-biru: #3B82F6;
+  --aksen-sian: #22D3EE;
+  --aksen-ungu: #A855F7;
+  
+  --aksen-kuning: #FEF08A;
+  --aksen-orange: #FDBA74;
+  --aksen-pink: #F9A8D4;
+  
+  --border-color: rgba(255, 255, 255, 0.08);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-background: var(--warna-latar);
+  --color-foreground: var(--warna-teks);
+  --color-muted: var(--warna-teks-sekunder);
+  --color-card: var(--warna-card);
+  --color-card-hover: var(--warna-card-hover);
+  --color-card-active: var(--warna-card-active);
+  --color-card-elevated: var(--warna-card-elevated);
+  --color-card-elevated-hover: var(--warna-card-elevated-hover);
+  --color-border-theme: var(--border-color);
+  --color-border-default: var(--border-default);
+  --color-border-hover: var(--border-hover);
+  --color-item: var(--warna-item);
+  --color-item-hover: var(--warna-item-hover);
+  --font-sans: var(--font-inter);
+  --font-jakarta: var(--font-jakarta);
   --font-mono: var(--font-geist-mono);
+  --color-aksen-biru: var(--aksen-biru);
+  --color-aksen-sian: var(--aksen-sian);
+  --color-aksen-ungu: var(--aksen-ungu);
+  --color-aksen-kuning: var(--aksen-kuning);
+  --color-aksen-orange: var(--aksen-orange);
+  --color-aksen-pink: var(--aksen-pink);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* ============================================================
+   Reset & Base (Editorial Theme)
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--warna-latar);
+  color: var(--warna-teks);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+/* Gradient background applied via layout layer */
+
+/* ============================================================
+   Scrollbar Kustom
+   ============================================================ */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--aksen-sian), var(--aksen-indigo));
+  border-radius: 999px;
+}
+
+/* ============================================================
+   Gradasi Teks Neon — Sian ke Biru
+   ============================================================ */
+.teks-gradasi-sian {
+  background: linear-gradient(135deg, var(--aksen-sian) 0%, var(--aksen-biru) 50%, var(--aksen-indigo) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   Tombol Utama — Gradasi Aktif
+   ============================================================ */
+.tombol-gradasi-aktif {
+  background: linear-gradient(135deg, var(--aksen-biru) 0%, var(--aksen-ungu) 100%);
+  background-size: 200% 200%;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: white;
+}
+.tombol-gradasi-aktif:not(:disabled):hover {
+  background-position: right center;
+  box-shadow: 0 10px 25px -5px rgba(147, 51, 234, 0.4);
+  transform: translateY(-2px) scale(1.02);
+}
+.tombol-gradasi-aktif:not(:disabled):active {
+  transform: translateY(2px) scale(0.95);
+}
+
+/* ============================================================
+   Editorial Card Interactions (Soft SaaS)
+   ============================================================ */
+.editorial-card {
+  background-color: var(--warna-card);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -2px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.editorial-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+}
+
+.dark .editorial-card:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+}
+
+.editorial-card:active {
+  transform: translateY(2px) scale(0.98);
+}
+
+.editorial-card.aktif {
+  border-color: transparent !important;
+}
+
+/* ============================================================
+   Animasi Putar Loading
+   ============================================================ */
+@keyframes putarTerus {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.animasi-putar {
+  animation: putarTerus 0.75s linear infinite;
+}
+
+/* ============================================================
+   Animasi Denyut Latar Hero
+   ============================================================ */
+@keyframes denyutLatar {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50%       { opacity: 0.6;  transform: scale(1.08); }
+}
+.denyut-cahaya {
+  animation: denyutLatar 7s ease-in-out infinite;
+}
+
+/* ============================================================
+   Skeleton shimmer untuk loading state
+   ============================================================ */
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position: 600px 0; }
+}
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--border-color) 25%,
+    rgba(128, 128, 128, 0.1) 50%,
+    var(--border-color) 75%
+  );
+  background-size: 600px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ============================================================
+   Fokus ring textarea & input
+   ============================================================ */
+.fokus-lucu:focus {
+  outline: none;
+  border-color: var(--aksen-biru);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+/* ============================================================
+   Noise Texture & Glass Morphism
+   ============================================================ */
+.noise-bg {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.02;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.dark .noise-bg {
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+}
+
+.glass-navbar {
+  background: rgba(248, 250, 252, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dark .glass-navbar {
+  background: rgba(11, 15, 25, 0.7);
+}
+
+.divider-gradient {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-color) 20%, var(--border-color) 80%, transparent);
+  width: 100%;
+}
+
+/* ============================================================
+   Custom Hot-Reload Safe Classes (Bypass Tailwind Caching)
+   ============================================================ */
+.card-expanded-area {
+  background-color: #F8FAFC;
+}
+.dark .card-expanded-area {
+  background-color: #0D0F1A;
+}
+
+.card-item-bg {
+  background-color: #FFFFFF;
+}
+.dark .card-item-bg {
+  background-color: #111427;
+}
+
+.card-blue-box {
+  background-color: rgba(59, 130, 246, 0.05);
+  border-color: rgba(59, 130, 246, 0.2);
+}
+.dark .card-blue-box {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.card-red-box {
+  background-color: #FEF2F2;
+  border-color: #FECACA;
+}
+.dark .card-red-box {
+  background-color: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.card-elevated-bg {
+  background-color: #FFFFFF;
+}
+.dark .card-elevated-bg {
+  background-color: #1B2040;
+}
+
+/* ============================================================
+   Card Option Selectable State
+   ============================================================ */
+.card-option {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.card-option:hover {
+  background-color: #F8FAFC;
+}
+.card-option.selected {
+  background-color: #EEF2FF;
+  border: 2px solid #6366F1;
+  box-shadow: 0 0 0 2px rgba(99,102,241,0.25);
+}
+.card-option:focus-visible {
+  outline: 2px solid rgba(99, 102, 241, 0.6);
+  outline-offset: 2px;
+}
+.card-option:active {
+  transform: scale(0.98);
+}
+
+.dark .card-option {
+  background-color: #15182B;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.dark .card-option:hover {
+  background-color: #1A1F3A;
+}
+.dark .card-option.selected {
+  background-color: #1E244A;
+  border: 2px solid #6366F1;
+  box-shadow: 0 0 0 2px rgba(99,102,241,0.25);
+}
+
+/* ============================================================
+   Input Custom Styles
+   ============================================================ */
+.input-custom {
+  background-color: #F8FAFC;
+  border: 1px solid rgba(15, 23, 42, 0.2) !important;
+  color: #0F172A;
+  transition: all 0.2s ease;
+}
+.input-custom::placeholder {
+  color: rgba(15, 23, 42, 0.4);
+}
+.input-custom:hover {
+  border-color: rgba(15, 23, 42, 0.4) !important;
+}
+.input-custom:focus {
+  border-color: #6366F1 !important;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
+  outline: none;
+}
+
+.dark .input-custom {
+  background-color: #111427;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #FFFFFF;
+}
+.dark .input-custom::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+.dark .input-custom:hover {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+.dark .input-custom:focus {
+  border-color: #6366F1 !important;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
+  outline: none;
+}
+
+/* ============================================================
+   Card Background Gradients (Hot-Reload Safe)
+   ============================================================ */
+.card-bg-blue {
+  background-color: #EFF6FF;
+  background-image: linear-gradient(to bottom right, #EFF6FF, #CFFAFE);
+  border-color: #BFDBFE !important;
+}
+.dark .card-bg-blue {
+  background-color: #15182B;
+  background-image: linear-gradient(to bottom right, rgba(59,130,246,0.15), rgba(6,182,212,0.15));
+  border-color: rgba(59,130,246,0.3) !important;
+}
+
+.card-bg-purple {
+  background-color: #F3E8FF;
+  background-image: linear-gradient(to bottom right, #F3E8FF, #FCE7F3);
+  border-color: #E9D5FF !important;
+}
+.dark .card-bg-purple {
+  background-color: #15182B;
+  background-image: linear-gradient(to bottom right, rgba(168,85,247,0.15), rgba(236,72,153,0.15));
+  border-color: rgba(168,85,247,0.3) !important;
+}
+
+.card-bg-cyan {
+  background-color: #CFFAFE;
+  background-image: linear-gradient(to bottom right, #CFFAFE, #E0F2FE);
+  border-color: #A5F3FC !important;
+}
+.dark .card-bg-cyan {
+  background-color: #15182B;
+  background-image: linear-gradient(to bottom right, rgba(6,182,212,0.15), rgba(59,130,246,0.15));
+  border-color: rgba(6,182,212,0.3) !important;
+}
+
+.card-bg-orange {
+  background-color: #FFEDD5;
+  background-image: linear-gradient(to bottom right, #FFEDD5, #FEF08A);
+  border-color: #FDBA74 !important;
+}
+.dark .card-bg-orange {
+  background-color: #15182B;
+  background-image: linear-gradient(to bottom right, rgba(249,115,22,0.15), rgba(234,179,8,0.15));
+  border-color: rgba(249,115,22,0.3) !important;
+}
+
+.card-bg-pink {
+  background-color: #FCE7F3;
+  background-image: linear-gradient(to bottom right, #FCE7F3, #FFE4E6);
+  border-color: #FBCFE8 !important;
+}
+.dark .card-bg-pink {
+  background-color: #15182B;
+  background-image: linear-gradient(to bottom right, rgba(236,72,153,0.15), rgba(244,63,94,0.15));
+  border-color: rgba(236,72,153,0.3) !important;
+}
+
+.card-bg-yellow {
+  background-color: #FEF08A;
+  background-image: linear-gradient(to bottom right, #FEF08A, #FEF3C7);
+  border-color: #FDE047 !important;
+}
+.dark .card-bg-yellow {
+  background-color: #15182B;
+  background-image: linear-gradient(to bottom right, rgba(234,179,8,0.15), rgba(245,158,11,0.15));
+  border-color: rgba(234,179,8,0.3) !important;
+}
+
+.card-bg-default {
+  background: #FFFFFF;
+  border-color: #E2E8F0 !important;
+}
+.dark .card-bg-default {
+  background: #15182B;
+  border-color: rgba(255,255,255,0.1) !important;
 }
